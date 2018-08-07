@@ -3,8 +3,8 @@
 		<app-banner v-bind:title="title"/>
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-4">
-					<movie-card v-bind:movie="mockMovie"/>
+				<div class="col-sm-4" v-for="movie in movies" :key="movie.id">
+					<movie-card v-bind:movie="movie"/>
 				</div>
 			</div>
 		</div>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-	import mockMovie from './mocks/sample-movie'
+	import movieApi from './API/movies'
 
 	import HelloWorld from './components/HelloWorld.vue'
 	import AppBanner from './components/AppBanner';
@@ -26,9 +26,12 @@
 			HelloWorld
 		},
 		data      : () => ({
-			title: "IMDB clone",
-			mockMovie
-		})
+			title : "IMDB clone",
+			movies: []
+		}),
+		mounted   : function () {
+			movieApi.getAll().then(movies => this.movies = movies)
+		}
 	}
 </script>
 
