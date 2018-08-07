@@ -1,41 +1,25 @@
 <template>
 	<div id="app">
-		<app-banner v-bind:title="title"/>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4" v-for="movie in movies" :key="movie.id">
-					<movie-card v-bind:movie="movie"/>
-				</div>
-			</div>
-		</div>
+		<app-banner v-bind:title="title"></app-banner>
+		<router-view></router-view>
 	</div>
 </template>
 
 <script>
-	import movieApi from './API/movies'
-
-	import HelloWorld from './components/HelloWorld.vue'
-	import AppBanner from './components/AppBanner';
-	import MovieCard from './components/MovieCard';
+	import AppBanner from './components/AppBanner'
 
 	export default {
 		name      : 'app',
 		components: {
-			MovieCard,
-			AppBanner,
-			HelloWorld
+			AppBanner
 		},
 		data      : () => ({
-			title : "IMDB clone",
-			movies: []
-		}),
-		mounted   : function () {
-			movieApi.getAll().then(movies => this.movies = movies)
-		}
+			title: "IMDB clone"
+		})
 	}
 </script>
 
-<style lang="scss">
+<style>
 	#app {
 		font-family: 'Avenir', Helvetica, Arial, sans-serif;
 		-webkit-font-smoothing: antialiased;

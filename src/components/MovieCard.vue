@@ -1,5 +1,5 @@
 <template>
-	<div class="movie-card card">
+	<div class="movie-card card" v-on:click="$emit('movie-selected', movie.id)">
 		<img class="card-img-top" v-bind:src="movie.Poster" alt="Card image cap">
 		<div class="card-body">
 			<h5 class="card-title">{{ movie.Title }}</h5>
