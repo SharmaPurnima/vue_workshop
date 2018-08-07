@@ -1,19 +1,24 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <app-banner v-bind:title="title"/>
+    <HelloWorld/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+	import HelloWorld from './components/HelloWorld.vue'
+	import AppBanner from './components/AppBanner';
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
+	export default {
+		name      : 'app',
+		components: {
+			AppBanner,
+			HelloWorld
+		},
+		data      : () => ({
+			title: "IMDB clone"
+		})
+	}
 </script>
 
 <style lang="scss">
@@ -21,8 +26,5 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
